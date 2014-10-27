@@ -4,6 +4,9 @@ class MemosController < ApplicationController
   # GET /memos
   def index
     @memos = Memo.all
+    @memos = @memos.tagged_with('example', exclude: true)
+    @q = @memos.search({})
+    @memos = @q.result
   end
 
   # GET /memos/1
